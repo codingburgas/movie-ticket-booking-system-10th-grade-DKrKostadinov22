@@ -1,4 +1,5 @@
 #include "../Include/Menu.h"	
+currentCinema current;
 
 void clearscreen()
 {
@@ -7,13 +8,14 @@ void clearscreen()
 
 void Admin::adminLogIn()
 {
-	string adminUsername, adminPassword;
+	string username, password;
+	string fileUsername, filePassword;
 
 
 	ifstream file("Users\\admin_credentials.txt");
 
-	getline(file, adminUsername);
-	getline(file, adminPassword);
+	getline(file, fileUsername);
+	getline(file, filePassword);
 
 	file.close();
 
@@ -21,12 +23,12 @@ void Admin::adminLogIn()
 	cout << "You have to log in to use admin menu!" << endl << "Username: ";
 	cin >> username;
 
-	if (username == adminUsername)
+	if (username == fileUsername)
 	{
 		cout << "Password: ";
 		cin >> password;
 
-		if (password == adminPassword)
+		if (password == filePassword)
 		{
 			clearscreen();
 			cout << setw(50) << "You have logged in successfully!" << endl;
@@ -44,33 +46,56 @@ void Admin::adminLogIn()
 	}
 }
 
-void Admin::createOrDeleteMovie()
+void Admin::addShow()
 {
-	cout << "Choose what you wnat to do" << endl << "1 for adding a new movie" << endl << "2 for deleting an existing movie" << endl;
-	int inAdminMenuChoice;
-	cin >> inAdminMenuChoice;
-	switch (inAdminMenuChoice)
-	{
-	case 1:
-		clearscreen();
-		cout << setw(50) << "You have chosen to add a film!";
-		break;
-	case 2:
-		clearscreen();
-		cout << "You have chosen to delete an existing film!";
-		break;
-	default:
-		clearscreen();
-		cout << "Incorrect input";
-		break;
-	}
+
 }
+void Admin::deleteShow()
+{
+
+}
+void Admin::updateShow()
+{
+
+}
+void Admin::addMovie()
+{
+	ofstream createFile;
+	Movie movie;
+	cout << "Enter movie title: "; cin >> movie.title; cout << endl;
+	cout << "Enter movie language: "; cin >> movie.language; cout << endl;
+	cout << "Enter movie genre: "; cin >> movie.genre; cout << endl;
+	cout << "Enter movie releaseDate: "; cin >> movie.releaseDate; cout << endl;
+
+	if (current == cinemaMax)
+	{
+		createFile.open("cinemaMax\\Movie\\Movie" + movie.title + ".txt");
+	}
+	else if (current == cinemaCity)
+	{
+		createFile.open("cinemaCity\\Movie\\Movie" + movie.title + ".txt");
+	}
+	createFile << movie.title << endl;
+	createFile << movie.language << endl;
+	createFile << movie.genre << endl;
+	createFile << movie.releaseDate << endl;
+}
+
 void Admin::adminMenu()
 {
 	clearscreen();
 	adminLogIn();
 	chooseCinema();
-	createOrDeleteMovie();
+	int choice;
+	cout << "1 for adding a show" << endl << "2 for deleting a show" << endl << "3 for updating a show" << endl << "4 for adding a movie" << endl << "5 for deleting a movie" << endl;
+	cin >> choice;
+	switch (choice)
+	{
+	case 4:
+		addMovie();
+		break;	
+	}
+
 }
 
 void Customer::customerMenu()
@@ -81,17 +106,20 @@ void Customer::customerMenu()
 
 void chooseCinema()
 {
+	Admin admin;
 	clearscreen();
-	int cinema;
 	cout << "Choose in which cinema you want to go" << endl << "1 for cinemaCity" << endl << "2 for cinemaMax" << endl;
+	int cinema;
 	cin >> cinema;
 	switch (cinema)
 	{
 	case 1: clearscreen();
 		cout << setw(50) << "You have entered cinemaCity";
+		current = cinemaCity;
 		break;
 	case 2: clearscreen();
 		cout << setw(50) << "You have entered cinemaMax";;
+		current = cinemaMax;
 		break;
 	default: clearscreen();
 		cout << "Incorrect input";

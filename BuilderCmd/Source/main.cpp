@@ -1,5 +1,4 @@
 #include "Menu.h"
-
 int main()
 {
 	ifstream checkFile("Users\\admin_credentials.txt");
@@ -14,5 +13,5 @@ int main()
 	{
 		checkFile.close();
 	}
-	menuChoice();
+	menuChoice(); 
 }
