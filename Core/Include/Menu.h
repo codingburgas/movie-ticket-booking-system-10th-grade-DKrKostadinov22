@@ -19,6 +19,7 @@ public:
 	void addShow();
 	void deleteShow();
 	void updateShow();
+	bool deleteMovie();
 };
 
 class Customer
