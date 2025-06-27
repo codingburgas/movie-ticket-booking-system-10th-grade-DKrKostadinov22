@@ -1,6 +1,7 @@
 #include "../Include/Menu.h"	
 #include "Misc.h"
 #include "Movie.h"
+#include "show.h"
 void Admin::adminLogIn()
 {
 	string username, password;
@@ -44,6 +45,7 @@ void Admin::adminLogIn()
 void Admin::adminMenu()
 {
 	Movie movie;
+	Show show;
 	clearscreen();
 	adminLogIn();
 	chooseCinema();
@@ -52,8 +54,15 @@ void Admin::adminMenu()
 	cin >> choice;
 	switch (choice)
 	{
+	case 1:
+		show.addShow();
+		break;
+	case 2:
+		show.deleteShow();
+		break;
 	case 3:
-		
+		show.updateShow();
+		break;
 	case 4:
 		movie.addMovie();
 		break;	
@@ -73,7 +82,6 @@ void Customer::customerMenu()
 
 void chooseCinema()
 {
-	Admin admin;
 	clearscreen();
 	cout << "Choose in which cinema you want to go" << endl << "1 for cinemaCity" << endl << "2 for cinemaMax" << endl;
 	int cinema;

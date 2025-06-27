@@ -5,21 +5,16 @@ using std::string;
 class Show
 {
 	string movieTitle;
-	string showTime;
 	string showDate;
 	string showSeatType;
 public:
 	void addShow();
-	void deleteShow();
+	bool deleteShow();
 	void updateShow();
 
 	string getMovieTitle()
 	{
 		return movieTitle;
-	}
-	string getShowTime()
-	{
-		return showTime;
 	}
 	string getShowDate()
 	{
@@ -33,10 +28,6 @@ public:
 	void setMovieTitle(string movieTitle)
 	{
 		this->movieTitle = movieTitle;
-	}
-	void setShowTime(string showTime)
-	{
-		this->showTime = showTime;
 	}
 	void setShowDate(string showDate)
 	{

@@ -17,6 +17,7 @@ public:
 	{
 		return language;
 	}
+
 	string getGenre()
 	{
 		return genre;
