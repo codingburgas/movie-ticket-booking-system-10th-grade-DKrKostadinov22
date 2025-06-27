@@ -97,5 +97,72 @@ bool Show::deleteShow()
 }
 void Show::updateShow()
 {
-	
+	cout << endl << "Shows" << endl;
+	if (!ListFiles(getCurrentShowDir(), CallBackPrintf))
+	{
+		clearscreen();
+		return;
+	}
+	cout << endl << "Choose which show you want to update" << endl;
+	string updatedShow;
+	cin >> updatedShow;
+
+	string filePath;
+
+	if (current == 0)
+		filePath = dirShowCinemaCity + updatedShow + ".txt";
+	else if (current == 1)
+		filePath = dirShowCinemaMax + updatedShow + ".txt";
+
+	ifstream inFile(filePath);
+	if (!inFile.is_open())
+	{
+		cout << "Show not found!" << endl;
+		return;
+	}
+
+	string currentTitle, currentDate, currentSeat;
+	getline(inFile, currentTitle);
+	getline(inFile, currentDate);
+	getline(inFile, currentSeat);
+	inFile.close();
+	clearscreen();
+	cout << "Current information:" << endl;
+	cout << "Title: " << currentTitle << endl;
+	cout << "Date: " << currentDate << endl;
+	cout << "Seat Type: " << currentSeat << endl;
+
+	cout << "Enter new title (or press Enter to keep it): " << endl;
+	cin.ignore();
+	string updatedTitle;
+	getline(cin, updatedTitle);
+	if (updatedTitle.empty()) updatedTitle = currentTitle;
+
+	cout << "Enter new date (or press Enter to keep it): ";
+	string updatedDate;
+	getline(cin, updatedDate);
+	if (updatedDate.empty()) updatedDate = currentDate;
+
+	cout << "Enter new seat type (Silver, Gold, Platinum) (or press Enter to keep it): ";
+	string updatedSeat;
+	getline(cin, updatedSeat);
+	if (updatedSeat.empty()) updatedSeat = currentSeat;
+
+
+	if (updatedTitle != currentTitle)
+	{
+		remove(filePath.c_str());
+		if (current == 0)
+			filePath = dirShowCinemaCity + updatedTitle + ".txt";
+		else if (current == 1)
+			filePath = dirShowCinemaMax + updatedTitle + ".txt";
+	}
+
+	ofstream outFile(filePath);
+	outFile << updatedTitle << endl;
+	outFile << updatedDate << endl;
+	outFile << updatedSeat << endl;
+	outFile.close();
+
+	cout << "Show updated successfully!" << endl;
 }
