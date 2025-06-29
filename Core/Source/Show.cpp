@@ -9,14 +9,14 @@ using namespace std;
 void Show::addShow()
 {
 	printf("\n\n");
-	if (!ListFiles(getCurrentDir(),CallBackPrintf))
+	if (!ListFiles(getCurrentDir(movieDir),CallBackPrintf))
 	{
 		return;
 	}
 	cout << "\nChoose in which movie you want to select" << endl;
 	string movieName;
 	cin >> movieName;
-	if (!FindFile(getCurrentDir(), movieName))
+	if (!FindFile(getCurrentDir(movieDir), movieName))
 	{
 		cout << "Movie doesn't exist" << endl;
 		Sleep(1000);
@@ -36,7 +36,7 @@ void Show::addShow()
 		show.setShowSeatType(type);
 	else
 		goto ticket;
-	ofstream fileShow(getCurrentShowDir() + movieName + ".txt");
+	ofstream fileShow(getCurrentDir(showDir) + movieName + ".txt");
 
 
 	show.setMovieTitle(movieName);
@@ -53,7 +53,7 @@ void Show::addShow()
 
 bool Show::deleteShow()
 {
-	if (!ListFiles(getCurrentDir(), CallBackPrintf))
+	if (!ListFiles(getCurrentDir(movieDir), CallBackPrintf))
 	{
 		return false;
 	}
@@ -62,7 +62,7 @@ bool Show::deleteShow()
 	cout << "Enter movie name: ";
 	cin >> movie;
 
-	if (!FindFile(getCurrentDir(), movie))
+	if (!FindFile(getCurrentDir(movieDir), movie))
 	{
 		clearscreen();
 		cout << "Movie doesn't exist" << endl;
@@ -70,14 +70,14 @@ bool Show::deleteShow()
 		return false;
 	}
 	clearscreen();
-	if (!ListFiles(getCurrentShowDir(), CallBackPrintf))
+	if (!ListFiles(getCurrentDir(showDir), CallBackPrintf))
 	{
 		clearscreen();
 		return false;
 	}
 	clearscreen();
 	cout << "Choose a show to delete" << endl;
-	if (!ListFiles(getCurrentShowDir(), CallBackPrintf))
+	if (!ListFiles(getCurrentDir(showDir), CallBackPrintf))
 	{
 		clearscreen();
 		return false;
@@ -86,14 +86,14 @@ bool Show::deleteShow()
 	std::string fileShow;
 	cout << "Enter show name to delete: ";
 	std::cin >> fileShow;
-	fileShow.insert(0, getCurrentShowDir());
+	fileShow.insert(0, getCurrentDir(showDir));
 	fileShow += ".txt";
 	return DeleteFileA(fileShow.c_str());
 }
 void Show::updateShow()
 {
 	cout << endl << "Shows" << endl;
-	if (!ListFiles(getCurrentShowDir(), CallBackPrintf))
+	if (!ListFiles(getCurrentDir(showDir), CallBackPrintf))
 	{
 		clearscreen();
 		return;
@@ -103,11 +103,7 @@ void Show::updateShow()
 	cin >> updatedShow;
 
 	string filePath;
-
-	if (current == 0)
-		filePath = dirShowCinemaCity + updatedShow + ".txt";
-	else if (current == 1)
-		filePath = dirShowCinemaMax + updatedShow + ".txt";
+	filePath = getCurrentDir(showDir) + updatedShow + ".txt";
 
 	ifstream inFile(filePath);
 	if (!inFile.is_open())
@@ -147,10 +143,7 @@ void Show::updateShow()
 	if (updatedTitle != currentTitle)
 	{
 		remove(filePath.c_str());
-		if (current == 0)
-			filePath = dirShowCinemaCity + updatedTitle + ".txt";
-		else if (current == 1)
-			filePath = dirShowCinemaMax + updatedTitle + ".txt";
+		filePath = getCurrentDir(showDir) + updatedTitle + ".txt";
 	}
 
 	ofstream outFile(filePath);

@@ -75,12 +75,19 @@ bool FindFile(const std::string& dirFile, const std::string& fname)
 
     return FindFileCallbackTarget;
 }
-std::string getCurrentDir()
+std::string getCurrentDir(currentDir dir)
 {
-    return current == cinemaCity ? dirCinemaCity : dirCinemaMax;
-}
-
-std::string getCurrentShowDir()
-{
-    return current == cinemaCity ? dirShowCinemaCity : dirShowCinemaMax;
+    switch(dir)
+    {
+    case movieDir:
+        return current == cinemaCity ? dirMovieCinemaCity : dirMovieCinemaMax;
+        break;
+    case showDir:
+        return current == cinemaCity ? dirShowCinemaCity : dirShowCinemaMax;
+        break;
+    case bookingDir:
+        return current == cinemaCity ? dirBookingCinemaCity : dirBookingCinemaMax;
+        break;
+    }
+    return "";
 }

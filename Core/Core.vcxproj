@@ -19,12 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Include\Booking.h" />
     <ClInclude Include="Include\Misc.h" />
     <ClInclude Include="Include\Menu.h" />
     <ClInclude Include="Include\Movie.h" />
     <ClInclude Include="Include\Show.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Source\Booking.cpp" />
     <ClCompile Include="Source\Menu.cpp" />
     <ClCompile Include="Source\Misc.cpp" />
     <ClCompile Include="Source\Movie.cpp" />

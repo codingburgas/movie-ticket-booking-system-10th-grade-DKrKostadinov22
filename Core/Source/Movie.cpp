@@ -15,7 +15,7 @@ void Movie::addMovie()
 	cout << "Enter movie genre: "; cin >> movie.genre; cout << endl;
 	cout << "Enter movie releaseDate: "; cin >> movie.releaseDate; cout << endl;
 
-	createFile.open(getCurrentDir() + movie.title + ".txt");
+	createFile.open(getCurrentDir(movieDir) + movie.title + ".txt");
 
 	createFile << movie.title << endl;
 	createFile << movie.language << endl;
@@ -28,14 +28,14 @@ void Movie::addMovie()
 bool Movie::deleteMovie()
 {	
 	printf("\n\nEnter which movie to delete:\n\n");
-	if (!ListFiles(getCurrentDir(),CallBackPrintf))
+	if (!ListFiles(getCurrentDir(movieDir),CallBackPrintf))
 	{
 		return false;
 	}	
 	
 	std::string fileMovie; 
 	std::cin >> fileMovie;
-	fileMovie.insert(0, getCurrentDir());
+	fileMovie.insert(0, getCurrentDir(movieDir));
 	fileMovie += ".txt";
 	return DeleteFileA(fileMovie.c_str());
 }

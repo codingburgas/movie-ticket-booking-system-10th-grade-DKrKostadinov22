@@ -6,21 +6,19 @@
 #include <fstream>
 using namespace std;
 
-class Admin
+namespace Admin
 {
-public:
 	void adminMenu();
 	void adminLogIn();
 };
 
-class Customer
+namespace Customer
 {
-public:
 	void customerMenu();
 	void customerLogin();
-	void chooseShow();
+	string chooseShow();
 };
-
+extern string currentUser;
 void menuChoice();
 void chooseCinema();
 
