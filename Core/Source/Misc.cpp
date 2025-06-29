@@ -28,7 +28,7 @@ bool ListFiles(const std::string& directoryPath, typeListCallBack cb )
             {
                 strcpy(fileMovie, fd.cFileName);
                 char* pos = strchr(fileMovie, '.');
-                if (pos) fileMovie[pos - fileMovie] = 0; // премахва разширението
+                if (pos) fileMovie[pos - fileMovie] = 0; 
 
                 std::string filenameOnly(fileMovie);
 

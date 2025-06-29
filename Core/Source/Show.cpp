@@ -8,11 +8,6 @@ using namespace std;
 
 void Show::addShow()
 {
-	//1. list movies
-	//2. ask which movie they would like to add a show to
-	//3. enter movie name
-	//4. enter show data
-	//5. add show for specific movie
 	printf("\n\n");
 	if (!ListFiles(getCurrentDir(),CallBackPrintf))
 	{

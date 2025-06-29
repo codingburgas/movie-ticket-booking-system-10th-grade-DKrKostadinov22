@@ -74,12 +74,6 @@ void Admin::adminMenu()
 
 }
 
-void Customer::customerMenu()
-{
-	clearscreen();
-	cout << "You have chosen customer menu!";
-}
-
 void chooseCinema()
 {
 	clearscreen();
@@ -102,6 +96,73 @@ void chooseCinema()
 	cout << endl;
 }
 
+void Customer::customerMenu()
+{
+	clearscreen();
+	cout << "You have chosen customer menu!";
+	customerLogin();
+	chooseCinema();
+	chooseShow();
+}
+
+
+void Customer::customerLogin()
+{
+	cout << "You have chosen customer menu!" << endl;
+	cout << "1 for Register" << endl << "2 for Login" << endl;
+	int choice;
+	cin >> choice;
+	string userRegister, passRegister;
+	string userLogIn, passLogIn;
+
+	switch (choice)
+	{
+		case 1: clearscreen();
+		{
+			ifstream customer("Users\\Customer.txt");
+			if (!customer.is_open())
+			{
+				cout << "You chose to register" << endl;
+				cout << "Username:";
+				cin >> userRegister;
+				ofstream createFile("Users\\Customer.txt");
+				createFile << userRegister << endl;
+				cout << "Password:";
+				cin >> passRegister;
+				createFile << passRegister << endl;
+				createFile.close();
+
+			}
+			else
+			{
+				customer.close();
+			}
+			break;
+		}
+	case 2: clearscreen();
+		cout << "You chose to logIn" << endl;
+		cout << "Username:";
+		string userUsername;
+		string userPassword;
+
+		ifstream file("Users\\Customer.txt");
+
+		getline(file, userUsername);
+		getline(file, userPassword);
+
+		cin >> userLogIn;
+		if (userLogIn == userUsername)
+		{
+			cout << "Password:";
+			cin >> passLogIn;
+			if (passLogIn == userPassword)
+			{
+				cout << "You successfully logged in";
+			}
+		}
+		break;
+	}
+}
 
 
 void menuChoice()

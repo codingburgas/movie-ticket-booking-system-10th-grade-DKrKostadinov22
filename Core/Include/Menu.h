@@ -17,6 +17,8 @@ class Customer
 {
 public:
 	void customerMenu();
+	void customerLogin();
+	void chooseShow();
 };
 
 void menuChoice();
