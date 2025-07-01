@@ -52,28 +52,44 @@ namespace Admin
 		Show show;
 		clearscreen();
 		adminLogIn();
+		Cinema:
 		chooseCinema();
 		int choice;
-		cout << "1 for adding a show" << endl << "2 for deleting a show" << endl << "3 for updating a show" << endl << "4 for adding a movie" << endl << "5 for deleting a movie" << endl;
+		Options:
+		cout << "1 for adding a show" << endl << "2 for deleting a show" << endl << "3 for updating a show" << endl << "4 for adding a movie" << endl << "5 for deleting a movie" << endl << "6 Choose different cinema" << endl << "7 to exit" << endl;
 		cin >> choice;
 		switch (choice)
 		{
 		case 1:
 			show.addShow();
+			clearscreen();
+			goto Options;
 			break;
 		case 2:
 			show.deleteShow();
+			clearscreen();
+			goto Options;
 			break;
 		case 3:
 			show.updateShow();
+			clearscreen();
+			goto Options;
 			break;
 		case 4:
 			movie.addMovie();
+			clearscreen();
+			goto Options;
 			break;
 		case 5:
 			movie.deleteMovie();
+			clearscreen();
+			goto Options;
 			break;
-
+		case 6:
+			goto Cinema;
+			break;
+		case 7:
+				exit(0);
 		}
 
 	}
@@ -108,8 +124,10 @@ namespace Customer
 		clearscreen();
 		cout << "You have chosen customer menu!";
 		customerLogin();
+		Cinema:
 		chooseCinema();
-		cout << "1 to make a booking \n 2 to delete a booking" << endl; 
+		MakeOrDelete:
+		cout << "1 to make a booking \n2 to delete a booking \n3 Choose different cinema \n4 to exit" << endl; 
 		string choice;
 		cin >> choice;
 		Booking booking;
@@ -118,12 +136,25 @@ namespace Customer
 		case 1:
 		{
 			booking.makeBooking();
+			clearscreen();
+			goto MakeOrDelete;
 			break;
 		}
 		case 2:
 		{
 			booking.cancelBooking();
+			clearscreen();
+			goto MakeOrDelete;
 			break;
+		}
+		case 3:
+		{
+			goto Cinema;
+			break;
+		}
+		case 4:
+		{
+			exit(0);
 		}
 		default:
 			break;

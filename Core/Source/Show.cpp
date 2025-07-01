@@ -8,6 +8,7 @@ using namespace std;
 
 void Show::addShow()
 {
+	clearscreen();
 	printf("\n\n");
 	if (!ListFiles(getCurrentDir(movieDir),CallBackPrintf))
 	{
@@ -53,6 +54,7 @@ void Show::addShow()
 
 bool Show::deleteShow()
 {
+	clearscreen();
 	if (!ListFiles(getCurrentDir(movieDir), CallBackPrintf))
 	{
 		return false;
@@ -92,6 +94,7 @@ bool Show::deleteShow()
 }
 void Show::updateShow()
 {
+	clearscreen();
 	cout << endl << "Shows" << endl;
 	if (!ListFiles(getCurrentDir(showDir), CallBackPrintf))
 	{

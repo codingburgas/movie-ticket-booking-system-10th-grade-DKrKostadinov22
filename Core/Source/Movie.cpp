@@ -7,6 +7,7 @@
 using namespace std;
 void Movie::addMovie()
 {
+	clearscreen();
 	ofstream createFile;
 
 	Movie movie;
@@ -27,6 +28,7 @@ void Movie::addMovie()
 
 bool Movie::deleteMovie()
 {	
+	clearscreen();
 	printf("\n\nEnter which movie to delete:\n\n");
 	if (!ListFiles(getCurrentDir(movieDir),CallBackPrintf))
 	{

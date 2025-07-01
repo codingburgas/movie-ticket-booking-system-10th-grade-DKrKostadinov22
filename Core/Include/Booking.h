@@ -9,8 +9,7 @@ class Booking
 	double price;
 public:
 	void makeBooking();
-	void cancelBooking();
-
+	bool cancelBooking();
 	double getprice()
 	{
 		return price;
