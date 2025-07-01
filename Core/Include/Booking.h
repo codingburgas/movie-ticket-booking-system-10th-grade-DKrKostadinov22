@@ -5,14 +5,15 @@ using namespace std;
 
 class Booking
 {
-	string seatVal, seatX, seatY, showName;
+	string seatX, seatY, showName;
+	double price;
 public:
 	void makeBooking();
 	void cancelBooking();
 
-	string getSeatVal()
+	double getprice()
 	{
-		return seatVal;
+		return price;
 	}
 	string getSeatX()
 	{
@@ -27,9 +28,9 @@ public:
 		return showName;
 	}
 
-	void setSeatVal(string seatVal)
+	void setprice(double price)
 	{
-		this->seatVal = seatVal;
+		this->price = price;
 	}
 	void setSeatX(string seatX)
 	{

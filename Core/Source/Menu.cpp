@@ -247,7 +247,7 @@ void menuChoice()
 	switch (menuChoose)
 	{
 	case 1:
-		Customer::customerMenu();
+		Customer::customerMenu();	
 		break;
 	case 2:
 		Admin::adminMenu();

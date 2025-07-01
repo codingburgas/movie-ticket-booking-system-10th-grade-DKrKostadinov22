@@ -21,4 +21,3 @@ namespace Customer
 extern string currentUser;
 void menuChoice();
 void chooseCinema();
-
